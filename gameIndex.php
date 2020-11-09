@@ -35,19 +35,31 @@
 
     <!--Random Number to determine how many pins are knocked-->
     <script>
-        var Display = "";
-        var Total = 0;
-        function Bowl(){
-            Display += " you rolled ";
-
-            var Scored = Math.floor(Math.random() * 11);
-
-            //for(index=0; index < ; index++) {
-            Display += " " + Scored;
-            Total += Scored;
-            //}
-            Display += "<br> Total: " + Total + "<br>"
-            document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins!"
+        var Pins=11, Bowls=0, Total = 0, Sets = 1;
+        //var Display = "";
+        if(Sets<10){
+            function Bowl(){
+                // if(Sets>10)
+                // {
+                //     console.log("game ended");
+                // }
+                //Display += " you rolled ";
+                var Scored = Math.floor(Math.random() * Pins + 1);
+                Pins = Pins - Scored;
+                Bowls++;
+                //Display += " " + Scored;
+                Total += Scored;
+                //Display += "<br> Total: " + Total + "<br>"
+                document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins! <br> Total: " + Total;
+                if(Pins == 1 || Bowls == 2){
+                    Sets++;
+                    Pins = 10; Bowls = 0;
+                }
+            }
+        }   
+        else if(Sets>10)
+        {
+            console.log("game ended");
         }
     </script>
 </div>
