@@ -8,7 +8,9 @@
 
 
 <!--Random Number to determine how many pins are knocked-->
+<!--Variable to count current number of pins before moving to next turn-->
 <!--We could add another 'player' that the player competes against-->
+<!--Do some math with the bowling rules-->
 
 
 <!--Score counter-->
