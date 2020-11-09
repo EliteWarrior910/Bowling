@@ -17,7 +17,7 @@
             margin: 0;
         }
     </style>
-    <title>Document</title>
+    <title>Bowling</title>
 </head>
 
 <body>
@@ -36,7 +36,10 @@
 <!--Do some math with the bowling rules-->
 
 
-<!--Score counter-->
+<!--Score card-->
+    <div class='score-grid'>
+
+    </div>
 <!--End game function showing who won-->
 
 </body>

@@ -24,6 +24,18 @@ body{
     display: grid;
 }
 
-.score-grid{
+ .score-grid{ /*large aggregated scorecard */
     display: grid;
+    /*columns name, 10 frames, total*/
+    grid-template-columns: auto 20px 20px 20px 20px 20px 20px 20px 20px 20px 20px 20px; 
+}
+
+.frame-grid{ /*each player's round inside larger scorecard*/
+    display: grid;
+    grid-template-rows: 15px 15px;
+}
+
+.splits-grid{ /*two columns for splits up top*/
+    display: grid;
+    grid-template-columns: 10px 10px;
 }
