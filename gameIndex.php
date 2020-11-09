@@ -26,7 +26,7 @@
 
 
 <!--Button to throw ball-->
-<button id="Bowl">Knock those pins!</button>
+<button id="BowlButton" onClick="Bowl">Knock those pins!</button>
 <!--We could add a hold-the-button function to detemine how good the throw is-->
 <!--If we have enough time, we could add a cheat function.-->
 
