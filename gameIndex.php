@@ -26,15 +26,28 @@
 
 
 <!--Button to throw ball-->
-<button id="BowlButton" onClick="Bowl">Knock those pins!</button>
+<button id="BowlButton" onClick="Bowl(Total)">Knock those pins!</button>
+<p id="Outcome"></p>
 <!--We could add a hold-the-button function to detemine how good the throw is-->
 <!--If we have enough time, we could add a cheat function.-->
 
 
 <!--Random Number to determine how many pins are knocked-->
 <script>
-    function Bowl(){
+    var Display = "";
+    var Total = 0;
+    function Bowl(Total){
+        Display += " you rolled ";
+
         var Scored = Math.floor(Math.random() * 11);
+        document.getElementById("Outcome").innerHTML = "You knocked over " + Scored " pins!"
+
+        for(index=0; index < Rolls; index++) {
+        Display += " " + RollNumber;
+        Total += RollNumber;
+        }
+        Display += "<br> Total: " + Total + "<br>"
+        document.getElementById("Outcome").innerHTML = " You rocked and" + Display;
     }
 </script>
 <!--Variable to count current number of pins before moving to next turn-->
