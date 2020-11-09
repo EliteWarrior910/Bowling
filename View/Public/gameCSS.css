@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+    font-family: century Gothic, CenturyGothic, sans-serif;
+}
+
+html,
+body{
+    height: auto;
+    background-color: #ffffff;
+}
+
+
+.page-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, auto);
+}
+
+.player-grid{
+    display: grid;
+}
+
+.alley-grid{
+    display: grid;
+}
+
+.score-grid{
+    display: grid;
+}
