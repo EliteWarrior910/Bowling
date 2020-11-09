@@ -40,32 +40,45 @@
 
     <!--Random Number to determine how many pins are knocked-->
     <script>
-        var Pins=11, Bowls=0, Total = 0, Sets = 1;
+        //split trips the second split bowl if no strike
+        var frame = 2, split = "f";
         //var Display = "";
-        if(Sets<10){
-            function Bowl(){
-                // if(Sets>10)
+        function Bowl(){
+
+            if(split == "f" && frame < 12){ //FirstSplit.exe
+                // if(frame>10)
                 // {
                 //     console.log("game ended");
                 // }
                 //Display += " you rolled ";
-                var Scored = Math.floor(Math.random() * Pins + 1);
-                Pins = Pins - Scored;
-                Bowls++;
-                //Display += " " + Scored;
-                Total += Scored;
+                var resultOne = Math.floor(Math.random() * 11);
                 //Display += "<br> Total: " + Total + "<br>"
-                document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins! <br> Total: " + Total;
-                if(Pins == 1 || Bowls == 2){
-                    Sets++;
-                    Pins = 10; Bowls = 0;
+                if(resultOne == 10){ //strike.exe
+                    document.getElementById("secondSplit" + frame).innerHTML = "X";
+                    frame++;
+                }
+                else{ //not strike.exe
+                    document.getElementById("firstSplit" + frame).innerHTML = resultOne;
+                    split = "t";
+                }
+            }
+            else if(frame < 12){ //SecondSplit.exe
+                var resultTwo = Math.floor(Math.random() * 11 - resultOne);
+                if (resultOne + resultTwo >= 10){ //spare.exe
+                    document.getElementById("secondSplit" + frame).innerHTML = "/";
+                    //increment frame, un-trip split
+                    frame++;
+                    split = "f";
+                }
+                else {
+                    document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                    //increment frame, un-trip split
+                    frame++;
+                    split = "f";
                 }
             }
         }   
-        else if(Sets>10)
-        {
-            console.log("game ended");
-        }
+
     </script>
 </div>
 <!--Variable to count current number of pins before moving to next turn-->
@@ -88,22 +101,19 @@
                             <table class='frame-table'>
                                 <tr>
                                     <!-- Split 1 -->
-                                    <td id='firstSplit$index'>9</td>
+                                    <td id='firstSplit$index'></td>
                                     <!-- Split 2 -->
-                                    <td id='secondSplit$index'>/</td>
+                                    <td id='secondSplit$index'></td>
                                 </tr>
                                 <tr>
                                     <!-- Frame Total -->
-                                    <td colspan='2' id='total$index'>10</td>
+                                    <td colspan='2' id='total$index'></td>
                                 </tr>
                             </table>
                         </div>
                     ";
                 }
             ?>
-            <script>
-                document.getElementById('firstSplit4').innerHTML='3';
-            </script>
         <!-- Frame rows -->
     </div>
 <!--End game function showing who won-->
