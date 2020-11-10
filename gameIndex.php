@@ -41,17 +41,18 @@
     <!--Random Number to determine how many pins are knocked-->
     <script>
         //split trips the second split bowl if no strike
-        var frame = 2, split = "f";
+        var frame = 2, split = false, resultOne = 0;
         //var Display = "";
         function Bowl(){
 
-            if(split == "f" && frame < 12){ //FirstSplit.exe
+            if(split == false && frame < 12){ //FirstSplit.exe
                 // if(frame>10)
                 // {
                 //     console.log("game ended");
                 // }
                 //Display += " you rolled ";
-                var resultOne = Math.floor(Math.random() * 11);
+                resultOne = Math.floor(Math.random() * 11);
+                console.log('First split result: ' + resultOne);
                 //Display += "<br> Total: " + Total + "<br>"
                 if(resultOne == 10){ //strike.exe
                     document.getElementById("secondSplit" + frame).innerHTML = "X";
@@ -59,25 +60,34 @@
                 }
                 else{ //not strike.exe
                     document.getElementById("firstSplit" + frame).innerHTML = resultOne;
-                    split = "t";
+                    //trip split
+                    split = true;
                 }
             }
             else if(frame < 12){ //SecondSplit.exe
-                var resultTwo = Math.floor(Math.random() * 11 - resultOne);
+                var resultTwo = Math.floor(Math.random() * (10 - resultOne + 1)); //
+                console.log('Second split result: ' + resultTwo);
                 if (resultOne + resultTwo >= 10){ //spare.exe
                     document.getElementById("secondSplit" + frame).innerHTML = "/";
                     //increment frame, un-trip split
                     frame++;
-                    split = "f";
+                    split = false;
                 }
                 else {
                     document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
                     //increment frame, un-trip split
                     frame++;
-                    split = "f";
+                    split = false;
                 }
             }
-        }   
+            else{ //game over message
+                document.getElementById("Outcome").innerHTML = 'gg ez';
+            }
+        }
+
+        function Score(){
+            //reads results and calculates
+        }
 
     </script>
 </div>
@@ -111,7 +121,7 @@
                                 </tr>
                             </table>
                         </div>
-                    ";
+                    ";                
                 }
             ?>
         <!-- Frame rows -->
