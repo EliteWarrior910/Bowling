@@ -32,7 +32,12 @@
 
 <!--Random Number to determine how many pins are knocked-->
 <div>
-    <button id="BowlButton" onclick="Bowl()">Knock those pins!</button>
+        <div id='Divvy'>
+    <button id="BowlButton" onclick="Choose()">Knock those pins!</button>
+        </div>
+        <div id='Livvy'>
+    <button id="Bowl2Button" onclick="Bowl2()">Knock those pins!</button>
+        </div>
     <p id="Outcome"></p>
     <!--We could add a hold-the-button function to detemine how good the throw is-->
     <!--If we have enough time, we could add a cheat function.-->
@@ -40,32 +45,71 @@
 
     <!--Random Number to determine how many pins are knocked-->
     <script>
-        var Pins=11, Bowls=0, Total = 0, Sets = 1;
+        var Pins=10, Bowls=0, Total = 0, Sets = 1;
+        var Split = false;
         //var Display = "";
-        if(Sets<10){
-            function Bowl(){
-                // if(Sets>10)
-                // {
-                //     console.log("game ended");
-                // }
-                //Display += " you rolled ";
-                var Scored = Math.floor(Math.random() * Pins + 1);
-                Pins = Pins - Scored;
-                Bowls++;
-                //Display += " " + Scored;
-                Total += Scored;
-                //Display += "<br> Total: " + Total + "<br>"
-                document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins! <br> Total: " + Total;
-                if(Pins == 1 || Bowls == 2){
-                    Sets++;
-                    Pins = 10; Bowls = 0;
+            function Choose(){
+                if(Split==false){
+                    Bowl();
+                }
+                else if(Split==true){
+                    Bowl2();
                 }
             }
-        }   
-        else if(Sets>10)
-        {
-            console.log("game ended");
-        }
+            function Bowl(){
+                if (Split == false){
+                    if(Sets>10)
+                    {
+                        console.log("game ended");
+                    }
+                    var Scored = Math.floor(Math.random() * Pins + 1);
+                    Pins = Pins - Scored;
+                    Bowls++;
+                    Total += Scored;
+                    document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins! <br> Total: " + Total;
+                    document.getElementById("firstSplit" + (Sets + 1)).innerHTML = Scored;
+                    if(Pins == 0 || Bowls == 2){
+                        Sets++;
+                        Pins = 10; Bowls = 0;
+                    }
+                    if(Pins != 10 && Pins != 0 || Bowls == 1){
+                        Split = true;
+                    }
+                }
+            }   
+            function Bowl2(){
+                if(Split==true){
+                    if(Sets>10){
+                    console.log("game ended");
+                    }
+                    var Scored = Math.floor(Math.random() * Pins + 1);
+                    Pins = Pins - Scored;
+                    Bowls++;
+                    Total += Scored;
+                    document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins! <br> Total: " + Total;
+                    document.getElementById("secondSplit" + (Sets + 1)).innerHTML = "/" + Scored;
+                    if(Pins == 0 || Bowls == 2){
+                        Sets++;
+                        Pins = 10; Bowls = 0;
+                        Split = false;
+                    }
+                }
+            }
+            
+            var Tid = 0, Speed = 100;
+
+            function toggleOn(){
+                if(Tid==0){
+                    Tid=setInterval('ThingToDo()',Speed);
+                }
+            }
+            function toggleOff(){
+                if (Tid != 0){
+                    clearInterval(Tid);
+                    Tid=0
+                }
+            }
+            function
     </script>
 </div>
 <!--Variable to count current number of pins before moving to next turn-->
