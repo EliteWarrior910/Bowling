@@ -32,7 +32,12 @@
 
 <!--Random Number to determine how many pins are knocked-->
 <div>
-    <button id="BowlButton" onclick="Bowl()">Knock those pins!</button>
+        <div id='Divvy'>
+    <button id="BowlButton" onclick="Choose()">Knock those pins!</button>
+        </div>
+        <div id='Livvy'>
+    <button id="Bowl2Button" onclick="Bowl2()">Knock those pins!</button>
+        </div>
     <p id="Outcome"></p>
     <!--We could add a hold-the-button function to detemine how good the throw is-->
     <!--If we have enough time, we could add a cheat function.-->
@@ -155,7 +160,23 @@
             document.getElementById('totalScore').innerHTML = totalScore;
 
         }
+            
+            var Tid = 0, Speed = 100;
 
+            function toggleOn(){
+                if(Tid==0){
+                    Tid=setInterval('ThingToDo()',Speed);
+                }
+            }
+            function toggleOff(){
+                if (Tid != 0){
+                    clearInterval(Tid);
+                    Tid=0
+                }
+            }
+            function Thing(){
+                
+            }
     </script>
 </div>
 <!--Variable to count current number of pins before moving to next turn-->
