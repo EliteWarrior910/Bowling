@@ -45,56 +45,54 @@
 
     <!--Random Number to determine how many pins are knocked-->
     <script>
-        var Pins=10, Bowls=0, Total = 0, Sets = 1;
-        var Split = false;
+        //split trips the second split bowl if no strike
+        var frame = 2, split = false, resultOne = 0;
         //var Display = "";
-            function Choose(){
-                if(Split==false){
-                    Bowl();
+        function Bowl(){
+
+            if(split == false && frame < 12){ //FirstSplit.exe
+                // if(frame>10)
+                // {
+                //     console.log("game ended");
+                // }
+                //Display += " you rolled ";
+                resultOne = Math.floor(Math.random() * 11);
+                console.log('First split result: ' + resultOne);
+                //Display += "<br> Total: " + Total + "<br>"
+                if(resultOne == 10){ //strike.exe
+                    document.getElementById("secondSplit" + frame).innerHTML = "X";
+                    frame++;
                 }
-                else if(Split==true){
-                    Bowl2();
-                }
-            }
-            function Bowl(){
-                if (Split == false){
-                    if(Sets>10)
-                    {
-                        console.log("game ended");
-                    }
-                    var Scored = Math.floor(Math.random() * Pins + 1);
-                    Pins = Pins - Scored;
-                    Bowls++;
-                    Total += Scored;
-                    document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins! <br> Total: " + Total;
-                    document.getElementById("firstSplit" + (Sets + 1)).innerHTML = Scored;
-                    if(Pins == 0 || Bowls == 2){
-                        Sets++;
-                        Pins = 10; Bowls = 0;
-                    }
-                    if(Pins != 10 && Pins != 0 || Bowls == 1){
-                        Split = true;
-                    }
-                }
-            }   
-            function Bowl2(){
-                if(Split==true){
-                    if(Sets>10){
-                    console.log("game ended");
-                    }
-                    var Scored = Math.floor(Math.random() * Pins + 1);
-                    Pins = Pins - Scored;
-                    Bowls++;
-                    Total += Scored;
-                    document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins! <br> Total: " + Total;
-                    document.getElementById("secondSplit" + (Sets + 1)).innerHTML = "/" + Scored;
-                    if(Pins == 0 || Bowls == 2){
-                        Sets++;
-                        Pins = 10; Bowls = 0;
-                        Split = false;
-                    }
+                else{ //not strike.exe
+                    document.getElementById("firstSplit" + frame).innerHTML = resultOne;
+                    //trip split
+                    split = true;
                 }
             }
+            else if(frame < 12){ //SecondSplit.exe
+                var resultTwo = Math.floor(Math.random() * (10 - resultOne + 1)); //
+                console.log('Second split result: ' + resultTwo);
+                if (resultOne + resultTwo >= 10){ //spare.exe
+                    document.getElementById("secondSplit" + frame).innerHTML = "/";
+                    //increment frame, un-trip split
+                    frame++;
+                    split = false;
+                }
+                else {
+                    document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                    //increment frame, un-trip split
+                    frame++;
+                    split = false;
+                }
+            }
+            else{ //game over message
+                document.getElementById("Outcome").innerHTML = 'gg ez';
+            }
+        }
+
+        function Score(){
+            //reads results and calculates
+        }
             
             var Tid = 0, Speed = 100;
 
@@ -109,7 +107,9 @@
                     Tid=0
                 }
             }
-            function
+            function Thing(){
+                
+            }
     </script>
 </div>
 <!--Variable to count current number of pins before moving to next turn-->
@@ -132,22 +132,19 @@
                             <table class='frame-table'>
                                 <tr>
                                     <!-- Split 1 -->
-                                    <td id='firstSplit$index'>9</td>
+                                    <td id='firstSplit$index'></td>
                                     <!-- Split 2 -->
-                                    <td id='secondSplit$index'>/</td>
+                                    <td id='secondSplit$index'></td>
                                 </tr>
                                 <tr>
                                     <!-- Frame Total -->
-                                    <td colspan='2' id='total$index'>10</td>
+                                    <td colspan='2' id='total$index'></td>
                                 </tr>
                             </table>
                         </div>
-                    ";
+                    ";                
                 }
             ?>
-            <script>
-                document.getElementById('firstSplit4').innerHTML='3';
-            </script>
         <!-- Frame rows -->
     </div>
 <!--End game function showing who won-->
