@@ -55,45 +55,119 @@
         }, 3000);        
 
         //split trips the second split bowl if no strike
-        var frame = 2, split = false, resultOne = 0;
+        var frame = 2, split = 0, resultOne = 0, resultTwo = 0;
+        //array for score function
+        var scores = [
+            [null, null],
+            [null, null],
+            [null, null],
+            [null, null],
+            [null, null],
+            [null, null],
+            [null, null],
+            [null, null],
+            [null, null],
+            [null, null],
+            [0, 0]
+        ];
+        //var Display = "";
         function Bowl(){
 
-            if(split == false && frame < 12){ //FirstSplit.exe
+            if(split == 0 && frame < 12){ //FirstSplit.exe
+                // if(frame>10)
+                // {
+                //     console.log("game ended");
+                // }
+                //Display += " you rolled ";
                 resultOne = Math.floor(Math.random() * 11);
-                console.log('First split result: ' + resultOne);
+                //console.log('First split result: ' + resultOne);
+                //Display += "<br> Total: " + Total + "<br>"
                 if(resultOne == 10){ //strike.exe
                     document.getElementById("secondSplit" + frame).innerHTML = "X";
+                    //update scores array
+                    scores[frame-2][0] = 'x';
+                    scores[frame-2][1] = 'X';
+                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
+                    console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
                     frame++;
                 }
                 else{ //not strike.exe
                     document.getElementById("firstSplit" + frame).innerHTML = resultOne;
                     //trip split
-                    split = true;
+                    split = 1;
+                    //update scores array
+                    scores[frame-2][0] = resultOne;
+                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
             }
             else if(frame < 12){ //SecondSplit.exe
-                var resultTwo = Math.floor(Math.random() * (10 - resultOne + 1)); //
-                console.log('Second split result: ' + resultTwo);
+                resultTwo = Math.floor(Math.random() * (10 - resultOne + 1)); //
+                //console.log('Second split result: ' + resultTwo);
                 if (resultOne + resultTwo >= 10){ //spare.exe
                     document.getElementById("secondSplit" + frame).innerHTML = "/";
+                    //update scores array
+                    scores[frame-2][1] = '/';
+                    console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
                     //increment frame, un-trip split
                     frame++;
-                    split = false;
+                    split = 0;
                 }
                 else {
                     document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                    //update scores array
+                    scores[frame-2][1] = resultTwo;
+                    console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
                     //increment frame, un-trip split
                     frame++;
-                    split = false;
+                    split = 0;
                 }
             }
             else{ //game over message
                 document.getElementById("Outcome").innerHTML = 'gg ez';
             }
+            Score();
         }
 
-        function Score(){
-            //reads results and calculates
+        function Score(){ //reads results and calculates scores
+            var totalScore = 0;
+            for (i=scores.length-2; i>=0; i--){
+                console.log('Test of score function');
+                switch (scores[i][1]){
+                    case null:
+                        console.log('frame ' + i + ' is null');
+                        if (scores[i][0] >= 0){
+                            document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
+                        }
+                        break;
+                    case '/':
+                        if(scores[i+1][0] >= 0 && scores[i+1][0] != null){
+                            scores[i][1] = (10 - scores[i][0])+scores[i+1][0];
+                            document.getElementById("total" + (i+2)).innerHTML = scores[i][0] + scores[i][1];
+                        }
+                        break;
+                    case 'X':
+                        if(scores[i+1][0] >= 0 && scores[i+1][0] != null&& scores[i+1][0] < 10 && scores[i+1][1] >= 0 && scores[i+1][1] != null){
+                            scores[i][0] = scores[i+1][0] + scores[i+1][1] + 10;
+                            scores[i][1] = 0;
+                            document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
+                        }
+                        else if (scores[i+1][0] >= 10 && scores[i+1][0] != null){
+                            scores[i][0] = scores[i+1][0] + scores[i+2][0] + 10;
+                            scores[i][1] = 0;
+                            document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
+                        }
+                        break;                    
+                    default:
+                        console.log('Default case for frame' + i)
+                        document.getElementById("total" + (i+2)).innerHTML = scores[i][0] + scores[i][1];
+                        break;
+                }
+                if (scores[i][1] >= 0){
+                    totalScore += (scores[i][0] + scores[i][1]);
+                }
+            }
+            document.getElementById('totalScore').innerHTML = totalScore;
+
         }
             
         var Counting=0, Counter=0, Target=0;
@@ -187,6 +261,9 @@
                     ";                
                 }
             ?>
+            <div style='grid-column:12; grid-row:1'>
+                <p id='totalScore'></p>
+            </div>
         <!-- Frame rows -->
     </div>
 <!--End game function showing who won-->
