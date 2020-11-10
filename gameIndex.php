@@ -33,32 +33,34 @@
 <!--Random Number to determine how many pins are knocked-->
 <div>
         <div id='Divvy'>
-    <button id="BowlButton" onclick="Choose()">Knock those pins!</button>
+    <button id="BowlButton" onclick="Bowl()">Knock those pins!</button>
         </div>
         <div id='Livvy'>
-    <button id="Bowl2Button" onclick="Bowl2()">Knock those pins!</button>
+    <button id="Bowl2Button" onclick="Choose()">Knock those pins!</button>
         </div>
     <p id="Outcome"></p>
+    <p id="Number"></p>
     <!--We could add a hold-the-button function to detemine how good the throw is-->
     <!--If we have enough time, we could add a cheat function.-->
 
 
     <!--Random Number to determine how many pins are knocked-->
     <script>
+        var testCount = 0;
+        setInterval(function(){
+
+            testCount++;
+            console.log("Current count: " + testCount);
+
+        }, 3000);        
+
         //split trips the second split bowl if no strike
         var frame = 2, split = false, resultOne = 0;
-        //var Display = "";
         function Bowl(){
 
             if(split == false && frame < 12){ //FirstSplit.exe
-                // if(frame>10)
-                // {
-                //     console.log("game ended");
-                // }
-                //Display += " you rolled ";
                 resultOne = Math.floor(Math.random() * 11);
                 console.log('First split result: ' + resultOne);
-                //Display += "<br> Total: " + Total + "<br>"
                 if(resultOne == 10){ //strike.exe
                     document.getElementById("secondSplit" + frame).innerHTML = "X";
                     frame++;
@@ -94,22 +96,62 @@
             //reads results and calculates
         }
             
-            var Tid = 0, Speed = 100;
+        var Counting=0, Counter=0, Target=0;
+        var Holding = false, Count = false;
+        function Choose(){
+            if(Holding==false){
+                Priming();
+            }
+            else if(Holding==true){
+                Throw();
+            }
+        }
 
-            function toggleOn(){
-                if(Tid==0){
-                    Tid=setInterval('ThingToDo()',Speed);
+        function Priming(){
+            Holding = true;
+            if(Holding==true){
+                Target = Math.floor(Math.random() * 1001)
+                setInterval
+            }
+            document.getElementById("Number").innerHTML = "Target: " + Target + "<br>Current: " + Counter;
+        }
+
+        function Throw(){
+            if(split==false){
+                Holding=false;
+                if(Target-Counting < 25 && Target-Counting > -25) //Strike
+                {
+                    document.getElementById("secondSplit" + frame).innerHTML = "X";
+                    frame++;
+                }
+                if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25) //8 or 9
+                {
+                    resultOne = Math.floor(Math.random() * 2) + 8;
+                }
+                if(Target-Counting < 200 && Target-Counting >= 75 || Target-Counting > -200 && Target-Counting <= -75) //3-8
+                {
+                    resultOne = Math.floor(Math.random() * 5) + 3;
+                }
+                if(Target-Counting < 400 && Target-Counting >= 200 || Target-Counting > -400 && Target-Counting <= -200) //1-3
+                {
+                    resultOne = Math.floor(Math.random() * 3) + 1;
+                }
+                if(Target-Counting >= 400 || Target-Counting <= -400) //0
+                {
+                    resultOne = 0;
                 }
             }
-            function toggleOff(){
-                if (Tid != 0){
-                    clearInterval(Tid);
-                    Tid=0
+            if(split==true){
+                Holding=false;
+                if(Target-Counting < 25 && Target-Counting > -25) //Spare
+                {
+                    document.getElementById("secondSplit" + frame).innerHTML = "/";
+                    //increment frame, un-trip split
+                    frame++;
+                    split = false;
                 }
             }
-            function Thing(){
-                
-            }
+        }
     </script>
 </div>
 <!--Variable to count current number of pins before moving to next turn-->
