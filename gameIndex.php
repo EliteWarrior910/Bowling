@@ -70,18 +70,13 @@
             [null, null],
             [0, 0]
         ];
-        //var Display = "";
+
         function Bowl(){
 
             if(split == 0 && frame < 12){ //FirstSplit.exe
-                // if(frame>10)
-                // {
-                //     console.log("game ended");
-                // }
-                //Display += " you rolled ";
+
                 resultOne = Math.floor(Math.random() * 11);
-                //console.log('First split result: ' + resultOne);
-                //Display += "<br> Total: " + Total + "<br>"
+
                 if(resultOne == 10){ //strike.exe
                     document.getElementById("secondSplit" + frame).innerHTML = "X";
                     //update scores array
@@ -169,7 +164,9 @@
             document.getElementById('totalScore').innerHTML = totalScore;
 
         }
-            
+        
+        
+ 
         var Counting=0, Counter=0, Target=0;
         var Holding = false, Count = false;
         function Choose(){
@@ -184,15 +181,24 @@
         function Priming(){
             Holding = true;
             if(Holding==true){
-                Target = Math.floor(Math.random() * 1001)
-                setInterval
+                Target = Math.floor(Math.random() * 501)
+                Counting = 0;
             }
-            document.getElementById("Number").innerHTML = "Target: " + Target + "<br>Current: " + Counter;
         }
 
+        setInterval(function(){
+            if(Holding==true){
+                if(Counting<=0) Count = true;
+                if(Count==true) Counting++;
+                if(Counting>=500) Count = false;
+                if(Count==false) Counting--;
+                document.getElementById("Number").innerHTML = "Target: " + Target + "<br>Current: " + Counting;
+            }
+        }, 5);
+
         function Throw(){
+            Holding=false;
             if(split==false){
-                Holding=false;
                 if(Target-Counting < 25 && Target-Counting > -25) //Strike
                 {
                     document.getElementById("secondSplit" + frame).innerHTML = "X";
