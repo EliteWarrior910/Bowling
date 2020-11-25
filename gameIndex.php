@@ -45,15 +45,8 @@
 
 
     <!--Random Number to determine how many pins are knocked-->
-    <script>
-        var testCount = 0;
-        setInterval(function(){
-
-            testCount++;
-            console.log("Current count: " + testCount);
-
-        }, 3000);        
-
+    <script>    
+    
         //split trips the second split bowl if no strike
         var frame = 2, split = 0, resultOne = 0, resultTwo = 0;
         //array for score function
