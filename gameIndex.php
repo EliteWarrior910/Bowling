@@ -32,16 +32,13 @@
 
 <!--Random Number to determine how many pins are knocked-->
 <div>
-        <div id='Divvy'>
-    <button id="BowlButton" onclick="Bowl()">Knock those pins!</button>
-        </div>
-        <div id='Livvy'>
-    <button id="Bowl2Button" onclick="Choose()">Knock those pins!</button>
-        </div>
+    <div id='Livvy'>
+        <button id="Bowl2Button" onclick="Choose()">Knock those pins!</button>
+    </div>
     <p id="Outcome"></p>
     <p id="Number"></p>
     <!--We could add a hold-the-button function to detemine how good the throw is-->
-    <!--If we have enough time, we could add a cheat function.-->
+ 
 
 
     <!--Random Number to determine how many pins are knocked-->
@@ -63,58 +60,6 @@
             [null, null],
             [0, 0]
         ];
-
-        function Bowl(){
-
-            if(split == 0 && frame < 12){ //FirstSplit.exe
-
-                resultOne = Math.floor(Math.random() * 11);
-
-                if(resultOne == 10){ //strike.exe
-                    document.getElementById("secondSplit" + frame).innerHTML = "X";
-                    //update scores array
-                    scores[frame-2][0] = 'x';
-                    scores[frame-2][1] = 'X';
-                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
-                    console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
-                    frame++;
-                }
-                else{ //not strike.exe
-                    document.getElementById("firstSplit" + frame).innerHTML = resultOne;
-                    //trip split
-                    split = 1;
-                    //update scores array
-                    scores[frame-2][0] = resultOne;
-                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
-                }
-            }
-            else if(frame < 12){ //SecondSplit.exe
-                resultTwo = Math.floor(Math.random() * (10 - resultOne + 1)); //
-                //console.log('Second split result: ' + resultTwo);
-                if (resultOne + resultTwo >= 10){ //spare.exe
-                    document.getElementById("secondSplit" + frame).innerHTML = "/";
-                    //update scores array
-                    scores[frame-2][1] = '/';
-                    console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
-                    //increment frame, un-trip split
-                    frame++;
-                    split = 0;
-                }
-                else {
-                    document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
-                    //update scores array
-                    scores[frame-2][1] = resultTwo;
-                    console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
-                    //increment frame, un-trip split
-                    frame++;
-                    split = 0;
-                }
-            }
-            else{ //game over message
-                document.getElementById("Outcome").innerHTML = 'gg ez';
-            }
-            Score();
-        }
 
         function Score(){ //reads results and calculates scores
             var totalScore = 0;
@@ -191,45 +136,214 @@
 
         function Throw(){
             Holding=false;
+            /*-------------------------------------------------First Throw----------------------------------------------------*/
             if(split==false){
                 if(Target-Counting < 25 && Target-Counting > -25) //Strike
                 {
                     document.getElementById("secondSplit" + frame).innerHTML = "X";
+                    //update scores array
+                    scores[frame-2][0] = 'x';
+                    scores[frame-2][1] = 'X';
+                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
+                    console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
                     frame++;
                 }
                 if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25) //8 or 9
                 {
                     resultOne = Math.floor(Math.random() * 2) + 8;
+                    document.getElementById("firstSplit" + frame).innerHTML = resultOne;
+                    //trip split
+                    split = 1;
+                    //update scores array
+                    scores[frame-2][0] = resultOne;
+                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
                 if(Target-Counting < 200 && Target-Counting >= 75 || Target-Counting > -200 && Target-Counting <= -75) //3-8
                 {
                     resultOne = Math.floor(Math.random() * 5) + 3;
+                    document.getElementById("firstSplit" + frame).innerHTML = resultOne;
+                    //trip split
+                    split = 1;
+                    //update scores array
+                    scores[frame-2][0] = resultOne;
+                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
                 if(Target-Counting < 400 && Target-Counting >= 200 || Target-Counting > -400 && Target-Counting <= -200) //1-3
                 {
                     resultOne = Math.floor(Math.random() * 3) + 1;
+                    document.getElementById("firstSplit" + frame).innerHTML = resultOne;
+                    //trip split
+                    split = 1;
+                    //update scores array
+                    scores[frame-2][0] = resultOne;
+                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
                 if(Target-Counting >= 400 || Target-Counting <= -400) //0
                 {
                     resultOne = 0;
+                    document.getElementById("firstSplit" + frame).innerHTML = resultOne;
+                    //trip split
+                    split = 1;
+                    //update scores array
+                    scores[frame-2][0] = resultOne;
+                    console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
             }
+            /*--------------------------------------------------------------Second Throw---------------------------------------------------*/
             if(split==true){
                 Holding=false;
-                if(Target-Counting < 25 && Target-Counting > -25) //Spare
+                if(Target-Counting < 25 && Target-Counting > -25 || (resultOne + resultTwo) == 10) //Spare
                 {
                     document.getElementById("secondSplit" + frame).innerHTML = "/";
+                    //update scores array
+                    scores[frame-2][1] = '/';
+                    console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
                     //increment frame, un-trip split
                     frame++;
-                    split = false;
+                    split = 0;
+                }
+                // Results1 = 9
+                if(resultOne == 9){
+                    if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25)
+                    {
+                        document.getElementById("secondSplit" + frame).innerHTML = "/";
+                        //update scores array
+                        scores[frame-2][1] = '/';
+                        console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
+                        //increment frame, un-trip split
+                        frame++;
+                        split = 0;
+                    }
+                    if(Target-Counting >= 75 || Target-Counting <= -75)
+                    {
+                        resultTwo = 0;
+                        document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                        //update scores array
+                        scores[frame-2][1] = resultTwo;
+                        console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
+                        //increment frame, un-trip split
+                        frame++;
+                        split = 0;
+                    }
+                }
+                if(resultOne == 8 || resultOne == 7 || resultOne == 6){
+                    if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25)
+                    {
+                        resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
+                        if(resultTwo < (resultOne * (1/8))){
+                            resultTwo = resultTwo + 2;
+                        }
+                        document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                        //update scores array
+                        scores[frame-2][1] = resultTwo;
+                        console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
+                        //increment frame, un-trip split
+                        frame++;
+                        split = 0;
+                    }
+                    if(Target-Counting >= 200 || Target-Counting <= -200){
+                        resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
+                        if(resultTwo >= (resultOne * (1/8))){
+                            resultTwo = 1;
+                        }
+                        document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                        //update scores array
+                        scores[frame-2][1] = resultTwo;
+                        console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
+                        //increment frame, un-trip split
+                        frame++;
+                        split = 0;
+                    }
+                }
+                if(resultOne == 5 || resultOne == 4 || resultOne == 3){
+                    if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25){
+                        resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
+                            if(resultTwo <= 1){
+                                resultTwo = resultTwo + 3;
+                            }
+                        document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                        //update scores array
+                        scores[frame-2][1] = resultTwo;
+                        console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
+                        //increment frame, un-trip split
+                        frame++;
+                        split = 0;
+                    }
+                    if(Target-Counting >= 200 || Target-Counting <= -200){
+                        resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
+                        if(resultTwo > 2){
+                            resultTwo = 2;
+                        }
+                        document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                        //update scores array
+                        scores[frame-2][1] = resultTwo;
+                        console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
+                        //increment frame, un-trip split
+                        frame++;
+                        split = 0;
+                    }
+                }
+                if(resultOne == 2 || resultOne == 1 || resultOne == 0){
+                    if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25){
+                        resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
+                            if(resultTwo <= 4){
+                                resultTwo = resultTwo + 3;
+                            }
+                        document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                        //update scores array
+                        scores[frame-2][1] = resultTwo;
+                        console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
+                        //increment frame, un-trip split
+                        frame++;
+                        split = 0;
+                    }
+                    if(Target-Counting >= 200 || Target-Counting <= -200){
+                        resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
+                        if(resultTwo > 4){
+                            resultTwo = 2;
+                        }
+                        document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
+                        //update scores array
+                        scores[frame-2][1] = resultTwo;
+                        console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
+                        //increment frame, un-trip split
+                        frame++;
+                        split = 0;
+                    }
                 }
             }
+            Score();
         }
+/*----------------------------------------------------------Possible Cookie Function------------------------------------------------*/
+        function SetCookie(name,value,expires,path,domain,secure) {
+        document.cookie = name + "=" + escape(value) +
+        ((expires) ? "; expires=" + expires.toGMTString() : "") +
+        ((path) ? "; path=" + path : "") +
+        ((domain) ? "; domain=" + domain : "") +
+        ((secure) ? "; secure" : "");
+        } 
+
+        // function GetCookie(name) {
+        // var arg = name + "=";
+        // var alen = arg.length;
+        // var clen = document.cookie.length;
+        // var i = 0;
+        // while (i if (document.cookie.substring(i, j) == arg)
+        // return getCookieVal (j);
+        // i = document.cookie.indexOf(" ", i) + 1;
+        // if (i == 0) break; 
+        // } 
+        // return null;
+
+        function getCookieVal(offset) {
+        var endstr = document.cookie.indexOf(";", offset);
+        if (endstr == -1) endstr = document.cookie.length;
+        return unescape(document.cookie.substring(offset, endstr));
+        } 
+/*----------------------------------------------------------Possible Cookie Function------------------------------------------------*/
     </script>
 </div>
-<!--Variable to count current number of pins before moving to next turn-->
 <!--We could add another 'player' that the player competes against-->
-<!--Do some math with the bowling rules-->
 
 
 <!--Score card-->
