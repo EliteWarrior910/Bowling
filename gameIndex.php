@@ -189,10 +189,10 @@
                     console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
             }
-            /*--------------------------------------------------------------Second Throw---------------------------------------------------*/
+            /*--------------------------------------------------------------Second Throw-----------------------------------------------------------------------------------*/
             if(split==true){
                 Holding=false;
-                if(Target-Counting < 25 && Target-Counting > -25 || (resultOne + resultTwo) == 10) //Spare
+                if(Target-Counting < 25 && Target-Counting > -25) //Spare
                 {
                     document.getElementById("secondSplit" + frame).innerHTML = "/";
                     //update scores array
@@ -241,7 +241,7 @@
                         frame++;
                         split = 0;
                     }
-                    if(Target-Counting >= 200 || Target-Counting <= -200){
+                    if(Target-Counting >= 75 || Target-Counting <= -75){
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                         if(resultTwo >= (resultOne * (1/8))){
                             resultTwo = 1;
@@ -269,7 +269,7 @@
                         frame++;
                         split = 0;
                     }
-                    if(Target-Counting >= 200 || Target-Counting <= -200){
+                    if(Target-Counting >= 75 || Target-Counting <= -75){
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                         if(resultTwo > 2){
                             resultTwo = 2;
@@ -297,7 +297,7 @@
                         frame++;
                         split = 0;
                     }
-                    if(Target-Counting >= 200 || Target-Counting <= -200){
+                    if(Target-Counting >= 75 || Target-Counting <= -75){
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                         if(resultTwo > 4){
                             resultTwo = 2;
