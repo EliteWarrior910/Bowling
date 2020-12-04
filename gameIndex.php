@@ -130,7 +130,7 @@
             Holding=false;
             /*-------------------------------------------------First Throw----------------------------------------------------*/
             if(split==0){
-                if(Target-Counting < 25 && Target-Counting > -25) //Strike
+                if(Target-Counting < 15 && Target-Counting > -15) //Strike
                 {
                     document.getElementById("secondSplit" + frame).innerHTML = "X";
                     //update scores array
@@ -140,7 +140,7 @@
                     console.log('Second split in frame ' + (frame-1) + ' is ' + scores[frame-2][1]);
                     frame++;
                 }
-                if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25) //8 or 9
+                if(Target-Counting < 55 && Target-Counting >= 15 || Target-Counting > -55 && Target-Counting <= -15) //8 or 9
                 {
                     resultOne = Math.floor(Math.random() * 2) + 8;
                     document.getElementById("firstSplit" + frame).innerHTML = resultOne;
@@ -150,7 +150,7 @@
                     scores[frame-2][0] = resultOne;
                     console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
-                if(Target-Counting < 200 && Target-Counting >= 75 || Target-Counting > -200 && Target-Counting <= -75) //3-8
+                if(Target-Counting < 150 && Target-Counting >= 55 || Target-Counting > -150 && Target-Counting <= -55) //3-8
                 {
                     resultOne = Math.floor(Math.random() * 5) + 3;
                     document.getElementById("firstSplit" + frame).innerHTML = resultOne;
@@ -160,7 +160,7 @@
                     scores[frame-2][0] = resultOne;
                     console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
-                if(Target-Counting < 400 && Target-Counting >= 200 || Target-Counting > -400 && Target-Counting <= -200) //1-3
+                if(Target-Counting < 250 && Target-Counting >= 150 || Target-Counting > -250 && Target-Counting <= -150) //1-3
                 {
                     resultOne = Math.floor(Math.random() * 3) + 1;
                     document.getElementById("firstSplit" + frame).innerHTML = resultOne;
@@ -170,7 +170,7 @@
                     scores[frame-2][0] = resultOne;
                     console.log('First split in frame ' + (frame-1) + ' is ' + scores[frame-2][0]);
                 }
-                if(Target-Counting >= 400 || Target-Counting <= -400) //0
+                if(Target-Counting >= 250 || Target-Counting <= -250) //0
                 {
                     resultOne = 0;
                     document.getElementById("firstSplit" + frame).innerHTML = resultOne;
@@ -184,7 +184,7 @@
             /*--------------------------------------------------------------Second Throw-----------------------------------------------------------------------------------*/
             if(split==1){
                 Holding=false;
-                if(Target-Counting < 25 && Target-Counting > -25) //Spare
+                if(Target-Counting < 15 && Target-Counting > -15) //Spare
                 {
                     document.getElementById("secondSplit" + frame).innerHTML = "/";
                     //update scores array
@@ -196,7 +196,7 @@
                 }
                 // Results1 = 9
                 if(resultOne == 9){
-                    if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25)
+                    if(Target-Counting < 55 && Target-Counting >= 15 || Target-Counting > -55 && Target-Counting <= -15)
                     {
                         document.getElementById("secondSplit" + frame).innerHTML = "/";
                         //update scores array
@@ -206,7 +206,7 @@
                         frame++;
                         split = 0;
                     }
-                    if(Target-Counting >= 75 || Target-Counting <= -75)
+                    if(Target-Counting >= 55 || Target-Counting <= -55)
                     {
                         resultTwo = 0;
                         document.getElementById("secondSplit" + frame).innerHTML = resultTwo;
@@ -219,7 +219,7 @@
                     }
                 }
                 if(resultOne == 8 || resultOne == 7 || resultOne == 6){
-                    if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25)
+                    if(Target-Counting < 55 && Target-Counting >= 15 || Target-Counting > -55 && Target-Counting <= -15)
                     {
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                         if(resultTwo < (resultOne * (1/8))){
@@ -233,7 +233,7 @@
                         frame++;
                         split = 0;
                     }
-                    if(Target-Counting >= 75 || Target-Counting <= -75){
+                    if(Target-Counting >= 55 || Target-Counting <= -55){
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                         if(resultTwo >= (resultOne * (1/8))){
                             resultTwo = 1;
@@ -248,7 +248,7 @@
                     }
                 }
                 if(resultOne == 5 || resultOne == 4 || resultOne == 3){
-                    if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25){
+                    if(Target-Counting < 55 && Target-Counting >= 15 || Target-Counting > -55 && Target-Counting <= -15){
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                             if(resultTwo <= 1){
                                 resultTwo = resultTwo + 3;
@@ -261,7 +261,7 @@
                         frame++;
                         split = 0;
                     }
-                    if(Target-Counting >= 75 || Target-Counting <= -75){
+                    if(Target-Counting >= 55 || Target-Counting <= -55){
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                         if(resultTwo > 2){
                             resultTwo = 2;
@@ -276,7 +276,7 @@
                     }
                 }
                 if(resultOne == 2 || resultOne == 1 || resultOne == 0){
-                    if(Target-Counting < 75 && Target-Counting >= 25 || Target-Counting > -75 && Target-Counting <= -25){
+                    if(Target-Counting < 55 && Target-Counting >= 15 || Target-Counting > -55 && Target-Counting <= -15){
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                             if(resultTwo <= 4){
                                 resultTwo = resultTwo + 3;
@@ -289,7 +289,7 @@
                         frame++;
                         split = 0;
                     }
-                    if(Target-Counting >= 75 || Target-Counting <= -75){
+                    if(Target-Counting >= 55 || Target-Counting <= -55){
                         resultTwo = Math.floor(Math.random() * (10 - resultOne + 1));
                         if(resultTwo > 4){
                             resultTwo = 2;
@@ -318,23 +318,23 @@
             <!-- Frame rows -->
                 <div style='grid-column:1; grid-row: 1; display:grid; margin-right: 10px; margin-left: 10px'>
                     <!-- Name -->
-                    <p style='margin: auto; color:rgb(255, 255, 255);' id='name'>Zach</p>
+                    <p style='margin: auto; color:rgb(0, 0, 0);' id='name'>Zach</p>
                 </div>
                 <!-- Populate the table by using Javascript to write to td id's plus the index number, starting at 2 and ending at 11. -->
                 <?php //place frame grids
                     for($index = 2; $index < 12; $index++){
                         echo"
-                            <div class='frame-grid' style='grid-column: $index'>
+                            <div class='frame-grid' style='grid-column: $index; margin: auto;'>
                                 <table class='frame-table'>
                                     <tr>
                                         <!-- Split 1 -->
-                                        <td id='firstSplit$index' style='color:rgb(255, 255, 255);'></td>
+                                        <td id='firstSplit$index' style='color:rgb(0, 0, 0);'></td>
                                         <!-- Split 2 -->
-                                        <td id='secondSplit$index' style='color:rgb(255, 255, 255);'></td>
+                                        <td id='secondSplit$index' style='color:rgb(0, 0, 0);'></td>
                                     </tr>
                                     <tr>
                                         <!-- Frame Total -->
-                                        <td colspan='2' id='total$index' style='color:rgb(255, 255, 255);'></td>
+                                        <td colspan='2' id='total$index' style='color:rgb(0, 0, 0);'></td>
                                     </tr>
                                 </table>
                             </div>
@@ -349,7 +349,7 @@
     </div>
     <div class="ui-grid">
         <div class="ui-grid__item ui-ball">
-            <img src="./View/Public/Bowling.png" style="z-index:2; height: 450px; width: 450px;"  onclick="Choose()">
+            <img src="./View/Public/Bowling.png" style="z-index:2; height: 450px; width: 450px; margin-left: 275px;"  onclick="Choose()">
         </div>
         <div class="ui-grid__item ui-bar">
             <img src="./View/Public/GreyLine.jpg" style="z-index:2; height: 25px; width: 285px; margin-top: 225px;" id="line">

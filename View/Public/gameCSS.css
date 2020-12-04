@@ -43,7 +43,7 @@ body{
         grid-row: 1;
         grid-template-rows: 150px;
         grid-template-columns: 20% 10% 70%;
-        background-color:#474747;
+        background-color:#f7f0b5;
         opacity: 90%;
      }
         
@@ -61,7 +61,7 @@ body{
                 grid-template-columns: auto auto;
             }
             .frame-table, th, td{
-                border: 1px solid #dfdfdf;
+                border: 1px solid #000000;
                 /* border-collapse: collapse; */
                 /* border-spacing: 15px 0; */
             }
