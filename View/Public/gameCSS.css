@@ -9,42 +9,36 @@ body{
     background-color: #ffffff;
 }
 
-
 .page-grid{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, auto);
 }
-
 .player-grid{
     display: grid;
 }
-
 .alley-grid{
     display: grid;
 }
-
  .score-grid{ /*large aggregated scorecard */
     display: grid;
     /*columns name, 10 frames, total*/
-    grid-template-columns: 100px repeat(11, auto); 
+    grid-template-columns: 100px repeat(11, min-content); 
     grid-template-rows: auto;
 }
-
 .frame-grid{ /*each player's round inside larger scorecard*/
     grid-row: 1;
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
 }
-
 .frame-table, th, td{
     border: 1px solid #dfdfdf;
     /* border-collapse: collapse; */
     /* border-spacing: 15px 0; */
 }
-
 .frame-table, td{
-    width: 100px;
-    height: 50px;
+    width: 50px;
+    height: 25px;
+    margin: 5px;
 }
