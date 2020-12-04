@@ -29,12 +29,7 @@
 
 
 <!--Random Number to determine how many pins are knocked-->
-<div>
-    <div id='Livvy'>
-        <button id="Bowl2Button" onclick="Choose()">Knock those pins!</button>
-    </div>
-    <p id="Outcome"></p>
-    <p id="Number"></p>
+<div class="page-grid">
     <!--We could add a hold-the-button function to detemine how good the throw is-->
  
     <script>    
@@ -56,169 +51,45 @@
             [0, 0]
         ];
         //lock array for use in Score function
-        var display = [
-            [null, null],
-            [null, null],
-            [null, null],
-            [null, null],
-            [null, null],
-            [null, null],
-            [null, null],
-            [null, null],
-            [null, null],
-            [null, null],
-            [0, 0]
-        ];
-
-        // function Score(){ //reads results and calculates scores
-        //     var totalScore = 0;
-        //     for (i=scores.length-2; i>=0; i--){
-        //         switch (scores[i][1]){
-        //             case null:
-        //                 if (scores[i][0] >= 0){ //If first split is number, set total for frame to number. If first split is null then break.
-        //                     document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
-        //                 }
-        //                 break;
-        //             case '/': //If next throw scores a number, set score of second split of frame to 10-(firstSplit)+(nextThrow'sScore). Else break
-        //                 if(scores[i+1][0] >= 0){
-        //                     scores[i][1] = (10 - scores[i][0])+scores[i+1][0];
-        //                     document.getElementById("total" + (i+2)).innerHTML = scores[i][0] + scores[i][1];
-        //                 } //Total of spare frame = firstSplit+secondSplit.
-        //                 break;
-        //             case 'X':
-        //                 if(scores[i+1][0] >= 0 && scores[i+1][0] != null&& scores[i+1][0] < 10 && scores[i+1][1] >= 0 && scores[i+1][1] != null){
-        //                     scores[i][0] = scores[i+1][0] + scores[i+1][1] + 10;
-        //                     scores[i][1] = 0;
-        //                     document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
-        //                 }
-        //                 else if (scores[i+1][0] >= 10 && scores[i+1][0] != null){
-        //                     scores[i][0] = scores[i+1][0] + scores[i+2][0] + 10;
-        //                     scores[i][1] = 0;
-        //                     document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
-        //                 }
-        //                 break;                    
-        //             default:
-        //                 console.log('Default case for frame' + i)
-        //                 document.getElementById("total" + (i+2)).innerHTML = scores[i][0] + scores[i][1];
-        //                 break;
-        //         }
-        //         if (scores[i][1] >= 0){
-        //             totalScore += (scores[i][0] + scores[i][1]);
-        //         }
-        //     }
-        //     document.getElementById('totalScore').innerHTML = totalScore;
-
-        // }
-        
-        // function Score(){ //reads results and calculates scores
-        //     var totalScore = 0;
-        //     for (i=scores.length-2; i>=0; i--){
-        //         switch (scores[i][1]){
-        //             case null:
-        //                 if (scores[i][0] >= 0){ //If first split is number, set total for frame to number. If first split is null then break.
-        //                     display[i][0] = scores[i][0];
-        //                     document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
-        //                 }
-        //                 break;
-        //             case '/': //If next throw scores a number, set score of second split of frame to 10-(firstSplit)+(nextThrow'sScore). Else break
-        //                 if(scores[i+1][0] >= 0 && scores[i+1][0] != null){
-        //                     display[i][1] = scores[i][0];
-        //                     scores[i][1] = 10 - scores[i][0];
-        //                     document.getElementById("total" + (i+2)).innerHTML = scores[i][0] + scores[i][1];
-        //                     console.log("Frame " + i+1 + " total is " + Number(scores[i][0]) + Number(scores[i][1]))
-        //                     lock[i][1] = true;
-        //                 } //Total of spare frame = firstSplit+secondSplit.
-        //                 break;
-        //             case 'X': //if next two throws are scored and strike isn't locked, run code and lock.
-        //                 if(lock[i][1] == false && scores[i+1][0] >= 0 && scores[i+1][0] != null&& scores[i+1][1] >= 0 && scores[i+1][1] != null){
-        //                     scores[i][0] = scores[i+1][0] + scores[i+1][1] + 10;
-        //                     scores[i][1] = 0;
-        //                     document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
-        //                     lock[i][1] = true;
-        //                 }
-        //                 // else if (scores[i+1][0] >= 10 && scores[i+1][0] != null){
-        //                 //     scores[i][0] = scores[i+1][0] + scores[i+2][0] + 10;
-        //                 //     scores[i][1] = 0;
-        //                 //     document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
-        //                 // }
-        //                 break;                    
-        //             default:
-        //                 if(scores[i][0]+scores[i][1] >= 10){
-        //                     scores[i][1] = '/';
-        //                 }
-        //                 document.getElementById("total" + (i+2)).innerHTML = scores[i][0] + scores[i][1];
-        //                 break;
-        //         }
-        //         if (scores[i][1] >= 0){
-        //             totalScore += (scores[i][0] + scores[i][1]);
-        //         }
-        //     }
-        //     document.getElementById('totalScore').innerHTML = totalScore;
-
-        // }
         function Score(){ //reads results and calculates scores
             var totalScore = 0;
             for (i=scores.length-2; i>=0; i--){
                 switch (scores[i][1]){
                     case null:
-                        if (Number.isInteger(scores[i][0]) == true){ //If first split is number, set total for frame to number. If first split is null then break.
-                            display[i][0] = scores[i][0];
+                        if (scores[i][0] >= 0){ //If first split is number, set total for frame to number. If first split is null then break.
                             document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
-                            totalScore += scores[i][0];
                         }
                         break;
                     case '/': //If next throw scores a number, set score of second split of frame to 10-(firstSplit)+(nextThrow'sScore). Else break
-                        if(scores[i+1][0] == 'x'){ //next throw is strike
-                            if(Number.isInteger(display[i+1][1]) == true){
-                                display[i][1] = 20;
-                                document.getElementById("total" + (i+2)).innerHTML = display[i][1];
-                                totalScore += display[i][1];
-                            }
-                        }
-                        else if (Number.isInteger(display[i+1][0]) == true){ //next throw is number
-                            display[i][1] = 10 - scores[i][0] + scores[i+1][0];
-                            document.getElementById("total" + (i+2)).innerHTML = 10 + scores[i+1][0];
-                            totalScore += display[i][1];
-                        }
+                        if(scores[i+1][0] >= 0){
+                            scores[i][1] = (10 - scores[i][0])+scores[i+1][0];
+                            document.getElementById("total" + (i+2)).innerHTML = scores[i][0] + scores[i][1];
+                        } //Total of spare frame = firstSplit+secondSplit.
                         break;
                     case 'X':
-                        display[i][0] = 0;
-                        if(scores[i+1][0] == 'x'){ //next throw is strike
-                            if(Number.isInteger(scores[i+2][0]) == true){ //next throw is number
-                                display[i][1] = 20 + scores[i+2][0];
-                                document.getElementById("total" + (i+2)).innerHTML = display[i][1];
-                                totalScore += display[i][1];
-                            } //breaks if three strikes in a row until next strike score is calculated
-                            else if(display[i+2][1] != null){ //if next strike is calculated
-                                display[i][1] = 30;
-                                document.getElementById("total" + (i+2)).innerHTML = display[i][1];
-                                totalScore += 30;
-                            }
+                        if(scores[i+1][0] >= 0 && scores[i+1][0] != null&& scores[i+1][0] < 10 && scores[i+1][1] >= 0 && scores[i+1][1] != null){
+                            scores[i][0] = scores[i+1][0] + scores[i+1][1] + 10;
+                            scores[i][1] = 0;
+                            document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
                         }
-                        else if(Number.isInteger(scores[i+1][0]) == true){ //next throw is number
-                            if(scores[i+1][1] = '/'){ //next throw is spare
-                                if(Number.isInteger(display[i][1]) ==  true){
-                                    display[i][1] = 20;
-                                    document.getElementById("total" + (i+2)).innerHTML = display[i][1];
-                                    totalScore += 20;
-                                }
-                            }
-                            else if(Number.isInteger(scores[i+2]) == true){ //next two throws are numbers
-                                display[i][1] = 10 + scores[i+1][0] + scores[i+1][1];
-                                document.getElementById("total" + (i+2)).innerHTML = display[i][1];
-                                totalScore += display[i][1];
-                            }
+                        else if (scores[i+1][0] >= 10 && scores[i+1][0] != null){
+                            scores[i][0] = scores[i+1][0] + scores[i+2][0] + 10;
+                            scores[i][1] = 0;
+                            document.getElementById("total" + (i+2)).innerHTML = scores[i][0];
                         }
-                        break;
+                        break;                    
                     default:
-                        display[i][1] = scores[i][1];
-                        document.getElementById("total" + (i+2)).innerHTML = display[i][0] + display[i][1];
-                        totalScore += display[i][0] + display[i][1];
+                        console.log('Default case for frame' + i)
+                        document.getElementById("total" + (i+2)).innerHTML = scores[i][0] + scores[i][1];
                         break;
                 }
+                if (scores[i][1] >= 0){
+                    totalScore += (scores[i][0] + scores[i][1]);
+                }
             }
-        }
+            document.getElementById('totalScore').innerHTML = totalScore;
 
+        }
         
 
         var Counting=0, Counter=0, Target=0;
@@ -237,23 +108,28 @@
             if(Holding==true){
                 Target = Math.floor(Math.random() * 501)
                 Counting = 0;
+                document.getElementById("line").style = "z-index:2; height: 25px; width: 285px; margin-top: "  + (Target - 25) + "px;";
             }
         }
 
         setInterval(function(){
             if(Holding==true){
                 if(Counting<=0) Count = true;
-                if(Count==true) Counting++;
+                if(Count==true) {
+                    Counting += 3;
+                }
                 if(Counting>=500) Count = false;
-                if(Count==false) Counting--;
-                document.getElementById("Number").innerHTML = "Target: " + Target + "<br>Current: " + Counting;
+                if(Count==false) {
+                    Counting -= 3;
+                }
+                document.getElementById("arrow").style = "z-index:2; height: 50px; width: 25px; margin-top:"  + (Counting - 35) + "px;";
             }
-        }, 5);
+        }, 1);
 
         function Throw(){
             Holding=false;
             /*-------------------------------------------------First Throw----------------------------------------------------*/
-            if(split==false){
+            if(split==0){
                 if(Target-Counting < 25 && Target-Counting > -25) //Strike
                 {
                     document.getElementById("secondSplit" + frame).innerHTML = "X";
@@ -306,7 +182,7 @@
                 }
             }
             /*--------------------------------------------------------------Second Throw-----------------------------------------------------------------------------------*/
-            if(split==true){
+            if(split==1){
                 Holding=false;
                 if(Target-Counting < 25 && Target-Counting > -25) //Spare
                 {
@@ -430,47 +306,59 @@
             }
             Score();
         }
-/*----------------------------------------------------------Possible Cookie Function------------------------------------------------*/
-    
-/*----------------------------------------------------------Possible Cookie Function------------------------------------------------*/
+
     </script>
-</div>
-<!--We could add another 'player' that the player competes against-->
+
+ <!--We could add another 'player' that the player competes against-->
 
 
-<!--Score card-->
-    <div class='score-grid'>
-        <!-- Frame rows -->
-            <div style='grid-column:1; grid-row: 1; display:grid; margin-right: 10px; margin-left: 10px'>
-                <!-- Name -->
-                <p style='margin: auto' id='name'>Zach</p>
-            </div>
-            <!-- Populate the table by using Javascript to write to td id's plus the index number, starting at 2 and ending at 11. -->
-            <?php //place frame grids
-                for($index = 2; $index < 12; $index++){
-                    echo"
-                        <div class='frame-grid' style='grid-column: $index'>
-                            <table class='frame-table'>
-                                <tr>
-                                    <!-- Split 1 -->
-                                    <td id='firstSplit$index'></td>
-                                    <!-- Split 2 -->
-                                    <td id='secondSplit$index'></td>
-                                </tr>
-                                <tr>
-                                    <!-- Frame Total -->
-                                    <td colspan='2' id='total$index'></td>
-                                </tr>
-                            </table>
-                        </div>
-                    ";                
-                }
-            ?>
-            <div style='grid-column:12; grid-row:1'>
-                <p id='totalScore'></p>
-            </div>
-        <!-- Frame rows -->
+ <!--Score card-->
+    <div class="player-grid">
+        <div class='score-grid'>
+            <!-- Frame rows -->
+                <div style='grid-column:1; grid-row: 1; display:grid; margin-right: 10px; margin-left: 10px'>
+                    <!-- Name -->
+                    <p style='margin: auto; color:rgb(255, 255, 255);' id='name'>Zach</p>
+                </div>
+                <!-- Populate the table by using Javascript to write to td id's plus the index number, starting at 2 and ending at 11. -->
+                <?php //place frame grids
+                    for($index = 2; $index < 12; $index++){
+                        echo"
+                            <div class='frame-grid' style='grid-column: $index'>
+                                <table class='frame-table'>
+                                    <tr>
+                                        <!-- Split 1 -->
+                                        <td id='firstSplit$index' style='color:rgb(255, 255, 255);'></td>
+                                        <!-- Split 2 -->
+                                        <td id='secondSplit$index' style='color:rgb(255, 255, 255);'></td>
+                                    </tr>
+                                    <tr>
+                                        <!-- Frame Total -->
+                                        <td colspan='2' id='total$index' style='color:rgb(255, 255, 255);'></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        ";                
+                    }
+                ?>
+                <div style='grid-column:12; grid-row:1'>
+                    <p id='totalScore'></p>
+                </div>
+            <!-- Frame rows -->
+        </div>
     </div>
+    <div class="ui-grid">
+        <div class="ui-grid__item ui-ball">
+            <img src="./View/Public/Bowling.png" style="z-index:2; height: 450px; width: 450px;"  onclick="Choose()">
+        </div>
+        <div class="ui-grid__item ui-bar">
+            <img src="./View/Public/GreyLine.jpg" style="z-index:2; height: 25px; width: 285px; margin-top: 225px;" id="line">
+        </div>
+        <div class="ui-grid__item ui-arrow">
+            <img src="./View/Public/leftArrow.png" style="height: 50px; width: 25px; margin-top: 215px;" id="arrow">
+        </div>
+    </div>
+</div>
 <!--End game function showing who won-->
 
 </body>
