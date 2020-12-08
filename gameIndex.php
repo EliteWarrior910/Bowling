@@ -18,6 +18,9 @@
         }
     </style>
     <title>Bowling</title>
+    <?php
+        include './Controller/cookie.php';
+    ?>
 </head>
 
 <body>
@@ -316,14 +319,14 @@
     <div class="player-grid">
         <div class='score-grid'>
             <!-- Frame rows -->
-                <div style='grid-column:1; grid-row: 1; display:grid; margin-right: 10px; margin-left: 10px'>
-                    <!-- Name -->
-                    <p style='margin: auto; color:rgb(0, 0, 0);' id='name'>Zach</p>
-                </div>
                 <!-- Populate the table by using Javascript to write to td id's plus the index number, starting at 2 and ending at 11. -->
                 <?php //place frame grids
                     for($index = 2; $index < 12; $index++){
                         echo"
+                            <div style='grid-column:1; grid-row: 1; display:grid; margin-right: 10px; margin-left: 10px'>
+                                <!-- Name -->
+                                <p style='margin: auto; color:rgb(0, 0, 0);' id='userName'>$USERNAME</p> 
+                            </div>
                             <div class='frame-grid' style='grid-column: $index; margin: auto;'>
                                 <table class='frame-table'>
                                     <tr>
@@ -357,6 +360,13 @@
         <div class="ui-grid__item ui-arrow">
             <img src="./View/Public/leftArrow.png" style="height: 50px; width: 25px; margin-top: 215px;" id="arrow">
         </div>
+    </div>
+    <div>
+        <center><p>Enter your current Score!</p></center>
+        <center><form method="POST" action="./Controller/cookie.php">
+            <input type="textarea" placeholder="Name" name="name">
+            <button type="submit" name="submition">Submit Score</button>
+        </form></center>
     </div>
 </div>
 <!--End game function showing who won-->
