@@ -1,7 +1,7 @@
 <script>    
     
     //split trips the second split bowl if no strike
-    var frame = 2, split = 0, resultOne = 0, resultTwo = 0;
+    var frame = 2, split = 0, resultOne = 0, resultTwo = 0; totalScore = 0;
     //throw result array for score function
     var scores = [
         [null, null],
@@ -18,7 +18,8 @@
     ];
     //lock array for use in Score function
     function Score(){ //reads results and calculates scores
-        var totalScore = 0;
+      if(frame<=11){
+        totalScore = 0;
         for (i=scores.length-2; i>=0; i--){
             switch (scores[i][1]){
                 case null:
@@ -53,7 +54,12 @@
                 totalScore += (scores[i][0] + scores[i][1]);
             }
         }
-        document.getElementById('totalScore').innerHTML = totalScore;
+      }
+      else{
+        document.getElementById('save-form').style.display = 'block';
+        document.getElementById('score').innerHTML = totalScore;
+      }
+      document.getElementById('totalScore').innerHTML = totalScore;
 
     }
     

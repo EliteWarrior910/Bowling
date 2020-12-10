@@ -22,6 +22,9 @@
                 </div>
             <!-- Frame rows -->
         </div>
+        <div>
+            <!-- Previous High Score -->
+        </div>
     </div>
     <div class="ui-grid">
         <div class="ui-grid__item ui-ball">
@@ -36,6 +39,7 @@
     </div>
     <div class='save-form' id='save-form'>
         <center><p>Enter your current Score!</p></center>
+        <center><p id='score' name='score'></p></center>
         <center><form method="POST" action="./Controller/cookie.php">
             <input type="textarea" placeholder="Name" name="name">
             <button type="submit" name="submission">Submit Score</button>

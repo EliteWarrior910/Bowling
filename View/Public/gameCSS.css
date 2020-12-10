@@ -41,7 +41,7 @@ body{
 .player-grid{
     display: grid;
     grid-row: 1;
-    grid-template-rows: 150px;
+    grid-template-rows: 150px 50px;
     grid-template-columns: 20% 10% 70%;
     background-color:#f7f0b5;
     opacity: 90%;
