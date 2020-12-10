@@ -58,6 +58,7 @@
       else{
         document.getElementById('save-form').style.display = 'block';
         document.getElementById('score').innerHTML = totalScore;
+        document.cookie = "score = " + totalScore;
       }
       document.getElementById('totalScore').innerHTML = totalScore;
 

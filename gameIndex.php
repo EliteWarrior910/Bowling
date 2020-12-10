@@ -24,6 +24,13 @@
         </div>
         <div>
             <!-- Previous High Score -->
+                <?php
+                    // check for cookies
+                    if(isset($_COOKIE[$cookie_name])) {
+                        echo $_COOKIE[$cookie_name];
+                    }
+                ?>
+            <!-- Previous High Score -->
         </div>
     </div>
     <div class="ui-grid">
