@@ -68,11 +68,13 @@
     var Counting=0, Counter=0, Target=0;
     var Holding = false, Count = false;
     function Choose(){
-        if(Holding==false){
-            Priming();
-        }
-        else if(Holding==true){
-            Throw();
+        if(frame != 13){
+            if(Holding==false){
+                Priming();
+            }
+            else if(Holding==true){
+                Throw();
+            }
         }
     }
 
