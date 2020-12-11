@@ -20,7 +20,7 @@ body{
     grid-template-rows: 100px 500px 100px;
     grid-row: 2;
     height: 900px;
-    background-image: url('./BowlingLanes.jpg');
+    background-image: url('./Images/BowlingLanes.jpg');
     background-size: cover;
     background-size: 1950px 900px;
 }

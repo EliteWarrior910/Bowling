@@ -8,7 +8,7 @@
 <!--Random Number to determine how many pins are knocked-->
 <div class="page-grid">
     <?php
-        include './Controller/bowling.php'
+        include './Controller/bowling.php';
     ?>
 
  <!--Score card-->
@@ -16,7 +16,7 @@
         <div class='score-grid'>
             <!-- Frame rows -->
                 <?php
-                    include './Controller/score-grid.php'
+                    include './Controller/score-grid.php';
                 ?>
                 <div style='grid-column:12; grid-row:1'>
                     <p id='totalScore'></p>

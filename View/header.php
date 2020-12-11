@@ -19,6 +19,7 @@
     <title>Bowling</title>
     <?php
         include './Controller/session-start.php';
+        include './Controller/cookie.php';
     ?>
 </head>
 
