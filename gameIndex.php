@@ -1,75 +1,72 @@
 <!--Basic Hud elements-->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href=''>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <style>
-        *{
-            font-family: 'Times New Roman', Times, serif;
-        }
-        body{
-            margin: 0;
-        }
-    </style>
-    <title>Document</title>
-</head>
-
-<body>
-<!--Grid to place everything-->
-
-
-
+<?php
+    include './View/header.php';
+?>
 <!--Button to throw ball-->
-<div>
-    <button id="BowlButton" onclick="Bowl()">Knock those pins!</button>
-    <p id="Outcome"></p>
-    <!--We could add a hold-the-button function to detemine how good the throw is-->
-    <!--If we have enough time, we could add a cheat function.-->
 
+<!--Random Number to determine how many pins are knocked-->
+<div class="page-grid">
+    <?php
+        include './Controller/bowling.php';
+    ?>
 
-    <!--Random Number to determine how many pins are knocked-->
-    <script>
-        var Pins=11, Bowls=0, Total = 0, Sets = 1;
-        //var Display = "";
-        if(Sets<10){
-            function Bowl(){
-                // if(Sets>10)
-                // {
-                //     console.log("game ended");
-                // }
-                //Display += " you rolled ";
-                var Scored = Math.floor(Math.random() * Pins + 1);
-                Pins = Pins - Scored;
-                Bowls++;
-                //Display += " " + Scored;
-                Total += Scored;
-                //Display += "<br> Total: " + Total + "<br>"
-                document.getElementById("Outcome").innerHTML = "You knocked over " + Scored + " pins! <br> Total: " + Total;
-                if(Pins == 1 || Bowls == 2){
-                    Sets++;
-                    Pins = 10; Bowls = 0;
-                }
+ <!--Score card-->
+    <div class="player-grid">
+        <div class='player-grid__item player-name'>
+        <?php
+            if(!isset($_COOKIE[$cookie_name])) {
+            echo "New Player";
+            } else {
+            echo "Cookie '" . $cookie_name . "' is set!<br>";
+            echo "Value is: " . $_COOKIE[$cookie_name];
             }
-        }   
-        else if(Sets>10)
-        {
-            console.log("game ended");
-        }
-    </script>
+        ?>
+        </div>
+        <div style='grid-column:3;'>
+            <p id='totalScore' style="margin-right: 250px, margin-top: 100px;"></p>
+        </div>
+        <div class='player-grid__item score-grid'>
+            <!-- Frame rows -->
+                <?php
+                    include './Controller/score-grid.php';
+                ?>
+                <div style='grid-column:12; grid-row:1'>
+                    <p id='totalScore'></p>
+                </div>
+            <!-- Frame rows -->
+        </div>
+        <div>
+            <!-- Previous High Score -->
+                <?php
+                    // check for cookies
+                    if(isset($_COOKIE[$cookie_name])) {
+                        echo "$_COOKIE[$cookie_name]";
+                    }
+                ?>
+            <!-- Previous High Score -->
+        </div>
+    </div>
+    <div class="ui-grid">
+        <div class="ui-grid__item ui-ball">
+            <img src="./View/Public/Images/Bowling.png" style="z-index:2; height: 450px; width: 450px; margin-left: 275px;"  onclick="Choose()">
+        </div>
+        <div class="ui-grid__item ui-bar">
+            <img src="./View/Public/Images/GreyLine.jpg" style="z-index:2; height: 25px; width: 285px; margin-top: 225px;" id="line">
+        </div>
+        <div class="ui-grid__item ui-arrow">
+            <img src="./View/Public/Images/leftArrow.png" style="height: 50px; width: 25px; margin-top: 215px;" id="arrow">
+        </div>
+    </div>
+    <div class='save-form' id='save-form'>
+        <center><p>Enter your current Score!</p></center>
+        <center><p id='score'></p></center>
+        <center><form method="POST">
+            <input type="textarea" placeholder="Name" name="name">
+            <input type="textarea" placeholder="Score" name="score">
+            <button type="submit" name="submission">Submit Score</button>
+        </form></center>
+    </div>
 </div>
-<!--Variable to count current number of pins before moving to next turn-->
-<!--We could add another 'player' that the player competes against-->
-<!--Do some math with the bowling rules-->
-
-
-<!--Score counter-->
-<!--End game function showing who won-->
 
 </body>
 </html>
