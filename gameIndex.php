@@ -12,7 +12,20 @@
 
  <!--Score card-->
     <div class="player-grid">
-        <div class='score-grid'>
+        <div class='player-grid__item player-name'>
+        <?php
+            if(!isset($_COOKIE[$cookie_name])) {
+            echo "New Player";
+            } else {
+            echo "Cookie '" . $cookie_name . "' is set!<br>";
+            echo "Value is: " . $_COOKIE[$cookie_name];
+            }
+        ?>
+        </div>
+        <div style='grid-column:3;'>
+            <p id='totalScore' style="margin-right: 250px, margin-top: 100px;"></p>
+        </div>
+        <div class='player-grid__item score-grid'>
             <!-- Frame rows -->
                 <?php
                     include './Controller/score-grid.php';
@@ -27,7 +40,7 @@
                 <?php
                     // check for cookies
                     if(isset($_COOKIE[$cookie_name])) {
-                        echo $_COOKIE[$cookie_name];
+                        echo "$_COOKIE[$cookie_name]";
                     }
                 ?>
             <!-- Previous High Score -->
@@ -46,9 +59,10 @@
     </div>
     <div class='save-form' id='save-form'>
         <center><p>Enter your current Score!</p></center>
-        <center><p id='score' name='score'></p></center>
+        <center><p id='score'></p></center>
         <center><form method="POST">
             <input type="textarea" placeholder="Name" name="name">
+            <input type="textarea" placeholder="Score" name="score">
             <button type="submit" name="submission">Submit Score</button>
         </form></center>
     </div>

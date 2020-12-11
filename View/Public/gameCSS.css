@@ -46,7 +46,10 @@ body{
     background-color:#f7f0b5;
     opacity: 90%;
 }
-    
+
+.player-name{
+    grid-column: 2;
+}
 .score-grid{ /*large aggregated scorecard */
     display: grid;
     grid-column: 3;
