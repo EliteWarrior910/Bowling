@@ -15,10 +15,10 @@
         <div class='player-grid__item player-name'>
         <?php
             if(!isset($_COOKIE[$cookie_name])) {
-            echo "New Player";
+                echo "New Player";
             } else {
-            echo "Cookie '" . $cookie_name . "' is set!<br>";
-            echo "Value is: " . $_COOKIE[$cookie_name];
+                echo "$cookie_name<br>";
+                echo "Value is: " . $_COOKIE[$cookie_name];
             }
         ?>
         </div>
