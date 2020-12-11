@@ -9,21 +9,70 @@ body{
     background-color: #ffffff;
 }
 
-
 .page-grid{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, auto);
+ }
+.ui-grid{
+    display: grid;
+    grid-template-columns: 15% 10% 75%;
+    grid-template-rows: 100px 500px 100px;
+    grid-row: 2;
+    height: 900px;
+    background-image: url('./Images/BowlingLanes.jpg');
+    background-size: cover;
+    background-size: 1950px 900px;
 }
-
+.ui-bar{
+    grid-row: 2;
+    grid-column: 1;
+    background-color: #03ad2e;
+    z-index: 0;
+}
+.ui-ball{
+    grid-row: 2;
+    grid-column: 3;
+}
+.ui-arrow{
+    grid-row:2;
+    grid-column: 2;
+}
 .player-grid{
     display: grid;
+    grid-row: 1;
+    grid-template-rows: 150px 50px;
+    grid-template-columns: 20% 10% 70%;
+    background-color:#f7f0b5;
+    opacity: 90%;
 }
 
-.alley-grid{
-    display: grid;
+.player-name{
+    grid-column: 2;
 }
-
-.score-grid{
+.score-grid{ /*large aggregated scorecard */
     display: grid;
+    grid-column: 3;
+    /*columns name, 10 frames, total*/
+    grid-template-columns: 100px repeat(11, min-content); 
+    grid-template-rows: auto;
+}
+.frame-grid{ /*each player's round inside larger scorecard*/
+    grid-row: 1;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+}
+.frame-table, th, td{
+    border: 1px solid #000000;
+    /* border-collapse: collapse; */
+    /* border-spacing: 15px 0; */
+}
+.frame-table, td{
+    width: 50px;
+    height: 25px;
+    margin: 5px;
+}
+.save-form{
+    display: none;
 }
