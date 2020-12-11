@@ -1,6 +1,7 @@
 <!--Basic Hud elements-->
 <?php
-    include './View/header.php'
+    include './View/header.php';
+    include './Controller/cookie.php';
 ?>
 <!--Button to throw ball-->
 
@@ -24,12 +25,12 @@
         </div>
         <div>
             <!-- Previous High Score -->
-                <?php
-                    // check for cookies
-                    if(isset($_COOKIE[$cookie_name])) {
-                        echo $_COOKIE[$cookie_name];
+                <script>
+                    var cookie = document.cookie;
+                    if(typeof cookie == null || typeof cookie == undefined){
+                        document.write("High score = " + cookie);
                     }
-                ?>
+                </script>
             <!-- Previous High Score -->
         </div>
     </div>
@@ -47,10 +48,10 @@
     <div class='save-form' id='save-form'>
         <center><p>Enter your current Score!</p></center>
         <center><p id='score' name='score'></p></center>
-        <center><form method="POST" action="./Controller/cookie.php">
-            <input type="textarea" placeholder="Name" name="name">
-            <button type="submit" name="submission">Submit Score</button>
-        </form></center>
+        <center>
+            <input type="textarea" placeholder="Name" id="name">
+            <button onclick="saveScore()" name="submission">Submit Score</button>
+        </center>
     </div>
 </div>
 

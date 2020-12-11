@@ -1,7 +1,7 @@
 <script>    
     
     //split trips the second split bowl if no strike
-    var frame = 2, split = 0, resultOne = 0, resultTwo = 0; totalScore = 0;
+    var frame = 2, split = 0, resultOne = 0, resultTwo = 0, totalScore = 0, cookieScore = null;
     //throw result array for score function
     var scores = [
         [null, null],
@@ -57,8 +57,8 @@
       }
       else{
         document.getElementById('save-form').style.display = 'block';
-        document.getElementById('score').innerHTML = totalScore;
-        document.cookie = "score = " + totalScore;
+        cookieScore = totalScore;
+        document.getElementById('score').innerHTML = cookieScore;
       }
       document.getElementById('totalScore').innerHTML = totalScore;
 
