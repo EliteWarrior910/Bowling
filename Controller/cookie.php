@@ -1,6 +1,6 @@
-<script>
-  function saveScore(){
-    document.cookie = cookieScore;
-    document.getElementById("score").innerHTML = "Your score of " + cookieScore + " has been saved.";
-  }
-</script>
+<?php
+  $_POST['name'] = $cookie_name;
+  $_POST['score'] = $cookie_value;
+  setcookie($cookie_name, $cookie_value, time() + (86400 * 31), "/"); // 86400 = 1 day
+
+?>
