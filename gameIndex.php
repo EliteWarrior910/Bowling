@@ -18,7 +18,7 @@
                 echo "New Player";
             } else {
                 echo "$cookie_name<br>";
-                echo "Value is: " . $_COOKIE[$cookie_name];
+                echo "Previous score: " . $_COOKIE[$cookie_name];
             }
         ?>
         </div>
@@ -40,7 +40,7 @@
                 <?php
                     // check for cookies
                     if(isset($_COOKIE[$cookie_name])) {
-                        echo "$_COOKIE[$cookie_name]";
+                        echo $_COOKIE[$cookie_name];
                     }
                 ?>
             <!-- Previous High Score -->
