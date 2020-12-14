@@ -2,9 +2,7 @@
 <?php
     include './View/header.php';
 ?>
-<!--Button to throw ball-->
 
-<!--Random Number to determine how many pins are knocked-->
 <div class="page-grid">
     <?php
         include './Controller/bowling.php';
@@ -40,7 +38,10 @@
                 <?php
                     // check for cookies
                     if(isset($_COOKIE[$cookie_name])) {
-                        echo $_COOKIE[$cookie_name];
+                        echo "$_COOKIE[$cookie_name]";
+                    }
+                    else{
+                        echo "New Player";
                     }
                 ?>
             <!-- Previous High Score -->
@@ -60,8 +61,8 @@
     <div class='save-form' id='save-form'>
         <center><p>Enter your current Score!</p></center>
         <center><p id='score'></p></center>
-        <center><form method="POST">
-            <input type="textarea" placeholder="Name" name="name">
+        <center><form action="./Controller/cookie.php" method="POST">
+            <input type="textarea" placeholder="Name" name="name" minlength="2">
             <input type="textarea" placeholder="Score" name="score">
             <button type="submit" name="submission">Submit Score</button>
         </form></center>
