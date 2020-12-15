@@ -13,7 +13,7 @@
         <div class='player-grid__item player-name'>
         <?php
             if(!isset($_COOKIE[$cookie_name])) {
-                echo "New Player";
+                echo "New Player3";
             } else {
                 echo "$cookie_name<br>";
                 echo "Previous score: " . $_COOKIE[$cookie_name];
@@ -41,7 +41,7 @@
                         echo "$_COOKIE[$cookie_name]";
                     }
                     else{
-                        echo "New Player";
+                        echo "New Player2";
                     }
                 ?>
             <!-- Previous High Score -->
@@ -61,10 +61,10 @@
     <div class='save-form' id='save-form'>
         <center><p>Enter your current Score!</p></center>
         <center><p id='score'></p></center>
-        <center><form action="./Controller/cookie.php" method="POST">
-            <input type="textarea" placeholder="Name" name="name" minlength="2">
+        <center><form method="post">
+            <input type="textarea" placeholder="Name" name="name">
             <input type="textarea" placeholder="Score" name="score">
-            <button type="submit" name="submission">Submit Score</button>
+            <input type="submit"></input>
         </form></center>
     </div>
 </div>
